@@ -76,8 +76,12 @@
             </li>
             <li class="dropdown dropdown-user">
                 <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
-                    <img src="./assets/img/admin-avatar.png" />
-                    <span></span>পলাশ মাহমুদ<i class="fa fa-angle-down m-l-5"></i></a>
+                    @if( ! \Illuminate\Support\Facades\Auth::user()->getFirstMediaUrl('avatar', 'small'))
+                        <img src="/img/blank-profile.jpg" alt="" />
+                    @else
+                        <img src="{{ asset(\Illuminate\Support\Facades\Auth::user()->getFirstMediaUrl('avatar', 'small')) }}" alt="" width="45px" />
+                    @endif
+                    <span></span>{{ \Illuminate\Support\Facades\Auth::user()->name }}<i class="fa fa-angle-down m-l-5"></i></a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="profile.html"><i class="fa fa-user"></i>প্রফাইল</a>
                     <a class="dropdown-item" href="profile.html"><i class="fa fa-cog"></i>সেটিংস</a>

@@ -32,6 +32,14 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::resource('user', 'UserController');
+    Route::resource('package', 'PackageController');
+
+    // Helper Controller
+    Route::post('status-change', 'HelperController@statusChange')->name('status-change');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
