@@ -52,4 +52,26 @@ class Helper
         return $form;
 
     }
+
+    public static function packageType($type)
+    {
+        if ($type==2) {
+            return '<span class="badge badge-success m-r-5 m-b-5">ইনভেস্টমেন্ট</span>';
+        } elseif ($type==1) {
+            return '<span class="badge badge-primary m-r-5 m-b-5">সঞ্চয়</span>';
+        } else {
+            return '<span class="badge badge-danger m-r-5 m-b-5">লোন</span>';
+        }
+    }
+
+    public static function packagePeriod($period)
+    {
+        if ($period==2) {
+            return '<span class="badge badge-danger m-r-5 m-b-5">মাসিক</span>';
+        } elseif ($period==1) {
+            return '<span class="badge badge-primary m-r-5 m-b-5">সাপ্তাহিক</span>';
+        } else {
+            return '<span class="badge badge-success m-r-5 m-b-5">দৈনিক</span>';
+        }
+    }
 }

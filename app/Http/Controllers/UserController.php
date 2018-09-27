@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(15);
         $user = new User;
         $col_data=array();
         $col_heads = array('ছবি','নাম', 'ফোন', 'যোগদানের তারিখ', 'স্টাটাস', 'অপশন');
@@ -42,7 +42,7 @@ class UserController extends Controller
             );
         }
 
-        return view('user.index', compact('col_heads', 'col_data', 'user'));
+        return view('user.index', compact('col_heads', 'col_data', 'user', 'users'));
     }
 
     /**
@@ -107,7 +107,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $users = User::all();
+        $users = User::paginate(15);
         $col_data=array();
         $col_heads = array('ছবি','নাম', 'ফোন', 'যোগদানের তারিখ', 'স্টাটাস', 'অপশন');
 
@@ -129,7 +129,7 @@ class UserController extends Controller
             );
         }
 
-        return view('user.index', compact('col_heads', 'col_data', 'user'));
+        return view('user.index', compact('col_heads', 'col_data', 'user', 'users'));
     }
 
     /**

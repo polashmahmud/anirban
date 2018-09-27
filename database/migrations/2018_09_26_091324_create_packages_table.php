@@ -20,6 +20,7 @@ class CreatePackagesTable extends Migration
             $table->text('description')->nullable();
             $table->double('start_amount',8,2);
             $table->double('end_amount',8,2);
+            $table->double('collection_amount',8,2);
             $table->boolean('type')->default(false)->comment('0=lone,1=saving,2=investment');
             $table->boolean('period')->default(false)->comment('0=day,1=week,2=month');
             $table->integer('installment');

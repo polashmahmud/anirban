@@ -29,7 +29,12 @@
                 </a>
             </li>
             <li>
-                <a class="active" href="package.html"><i class="sidebar-item-icon fa fa-cubes"></i>
+                <a class="active" href="{{ route('account.index') }}"><i class="sidebar-item-icon fa fa-user"></i>
+                    <span class="nav-label">একাউন্ট</span>
+                </a>
+            </li>
+            <li>
+                <a class="active" href="{{ route('package.index') }}"><i class="sidebar-item-icon fa fa-cubes"></i>
                     <span class="nav-label">প্যাকেজ</span>
                 </a>
             </li>

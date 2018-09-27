@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::resource('user', 'UserController');
     Route::resource('package', 'PackageController');
+    Route::resource('account', 'AccountController');
 
     // Helper Controller
     Route::post('status-change', 'HelperController@statusChange')->name('status-change');
