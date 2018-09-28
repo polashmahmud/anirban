@@ -63,9 +63,14 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $phone = preg_replace('/\s+/','',$request->phone);
+        $old_user = User::where('phone', $phone)->first();
+        if (count($old_user))
+            return back()->withErrors('Already phone number is taken');
+
         $user = new User;
         $user->name = $request->name;
-        $user->phone = $request->phone;
+        $user->phone = $phone;
         $user->email = $request->email;
         $user->join = $request->join;
         $user->role = $request->role;
@@ -142,8 +147,6 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->name = $request->name;
-        $user->phone = $request->phone;
-        $user->email = $request->email;
         $user->join = $request->join;
         $user->role = $request->role;
         $user->status = $request->status;

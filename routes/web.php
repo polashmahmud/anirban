@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('user', 'UserController');
     Route::resource('package', 'PackageController');
     Route::resource('account', 'AccountController');
+    Route::resource('collection', 'CollectionController');
+    Route::resource('debit-credit', 'DebitCreditController');
 
     // Helper Controller
     Route::post('status-change', 'HelperController@statusChange')->name('status-change');

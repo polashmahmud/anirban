@@ -20,6 +20,7 @@ class CreateAccountsTable extends Migration
             $table->unsignedInteger('create_by');
             $table->date('date');
             $table->double('amount',8,2);
+            $table->boolean('type')->default(false)->comment('0=lone,1=saving,2=investment');
             $table->boolean('status')->default(false)->comment('0=active,1=done');
             $table->timestamps();
 

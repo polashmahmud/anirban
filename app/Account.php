@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    protected $fillable = ['user_id', 'package_id', 'create_by', 'date', 'amount', 'status'];
+    protected $fillable = ['user_id', 'package_id', 'create_by', 'date', 'amount', 'type', 'status'];
 
     public function user()
     {
@@ -16,6 +16,11 @@ class Account extends Model
     public function package()
     {
         return $this->belongsTo('App\Package');
+    }
+
+    public function collections()
+    {
+        return $this->hasMany('App\Collection', 'account_id');
     }
 
 }

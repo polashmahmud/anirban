@@ -4,6 +4,8 @@
 namespace App\Classes;
 
 
+use App\Collection;
+
 class Helper
 {
     public static function delete_form($form_url, $id)
@@ -73,5 +75,13 @@ class Helper
         } else {
             return '<span class="badge badge-success m-r-5 m-b-5">দৈনিক</span>';
         }
+    }
+
+    public static function collectionLastDate($id)
+    {
+        $collection = Collection::with('account:amount')->where('account_id', $id)->get()->last();
+        $last_date = $collection->date;
+
+        return $last_date;
     }
 }

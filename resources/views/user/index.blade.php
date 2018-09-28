@@ -67,14 +67,26 @@
                             </div>
                         @endif
 
-                        <div class="form-group">
-                            <label>ইমেল</label>
-                            <input class="form-control" type="text" placeholder="ইমেল" name="email" value="{{ old('email', $user->email) }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>মোবাইল নম্বর</label>
-                            <input class="form-control" id="ex-phone2" type="text" name="phone" value="{{ old('phone', $user->phone) }}" required>
-                        </div>
+                        @if($user->exists)
+                            <div class="form-group">
+                                <label>ইমেল</label>
+                                <input class="form-control" type="text" placeholder="ইমেল" value="{{ old('email', $user->email) }}" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>মোবাইল নম্বর</label>
+                                <input class="form-control" id="ex-phone2" type="text" value="{{ old('phone', $user->phone) }}" disabled>
+                            </div>
+                        @else
+                            <div class="form-group">
+                                <label>ইমেল</label>
+                                <input class="form-control" type="text" placeholder="ইমেল" name="email" value="{{ old('email', $user->email) }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>মোবাইল নম্বর</label>
+                                <input class="form-control" id="ex-phone2" type="text" name="phone" value="{{ old('phone', $user->phone) }}" required>
+                            </div>
+                        @endif
+
                         @if($user->exists)
                             <div class="form-group">
                                 <label>পাসওয়ার্ড</label>

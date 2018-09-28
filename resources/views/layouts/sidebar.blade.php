@@ -3,7 +3,7 @@
         <div class="admin-block d-flex">
             <div>
                 @if( ! \Illuminate\Support\Facades\Auth::user()->getFirstMediaUrl('avatar', 'small'))
-                    <img src="/img/blank-profile.jpg" alt="" />
+                    <img src="/img/blank-profile.jpg" alt="" width="45px;" />
                 @else
                     <img src="{{ asset(\Illuminate\Support\Facades\Auth::user()->getFirstMediaUrl('avatar', 'small')) }}" alt="" width="45px" />
                 @endif
@@ -24,9 +24,22 @@
                 </a>
             </li>
             <li>
-                <a class="active" href="money.html"><i class="sidebar-item-icon fa fa-money"></i>
-                    <span class="nav-label">জমা</span>
-                </a>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-money"></i>
+                    <span class="nav-label">জমা</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{ route('collection.index') }}?type=lone">লোন কালেকশন</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('collection.index') }}?type=saving">সঞ্চয় কালেকশন</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('collection.index') }}?type=investment">ইনভেস্টমেন্ট কালেকশন</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('collection.index') }}">সকল কালেকশন</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a class="active" href="{{ route('account.index') }}"><i class="sidebar-item-icon fa fa-user"></i>
@@ -39,7 +52,7 @@
                 </a>
             </li>
             <li>
-                <a class="active" href="debit-credit.html"><i class="sidebar-item-icon fa fa-bookmark-o"></i>
+                <a class="active" href="{{ route('debit-credit.index') }}"><i class="sidebar-item-icon fa fa-bookmark-o"></i>
                     <span class="nav-label">জমা/খরচ</span>
                 </a>
             </li>

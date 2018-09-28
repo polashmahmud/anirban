@@ -18,7 +18,7 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $packages = Package::paginate(15);
+        $packages = Package::where('id', '>', 1)->paginate(15);
         $package = new Package;
         $col_data=array();
         $col_heads = array('নাম', 'শুরুর টাকা', 'শেষের টাকা', 'কিস্তি টাকা', 'সময়', 'টাইপ', 'ধরন', 'স্টাটার্স', 'অপশন');

@@ -43,32 +43,32 @@
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-success color-white widget-stat">
                 <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">201</h2>
-                    <div class="m-b-5">সর্বমোট টাকা</div><i class="ti-shopping-cart widget-stat-icon"></i>
+                    <h2 class="m-b-5 font-strong">{{ $total_investment }}</h2>
+                    <div class="m-b-5">সর্বমোট মূলধন</div><i class="ti-shopping-cart widget-stat-icon"></i>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-info color-white widget-stat">
                 <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">1250</h2>
-                    <div class="m-b-5">লাভ</div><i class="ti-bar-chart widget-stat-icon"></i>
+                    <h2 class="m-b-5 font-strong">{{ abs($total_lone) }}</h2>
+                    <div class="m-b-5">সর্বমোট ঋণ</div><i class="ti-bar-chart widget-stat-icon"></i>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-warning color-white widget-stat">
                 <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">$1570</h2>
-                    <div class="m-b-5">ঋণ</div><i class="fa fa-money widget-stat-icon"></i>
+                    <h2 class="m-b-5 font-strong">{{ $total_collection }}</h2>
+                    <div class="m-b-5">সবর্মোট জমা</div><i class="fa fa-money widget-stat-icon"></i>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-danger color-white widget-stat">
                 <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">108</h2>
-                    <div class="m-b-5">মোট সদস্য</div><i class="ti-user widget-stat-icon"></i>
+                    <h2 class="m-b-5 font-strong">{{ $total_profit }}</h2>
+                    <div class="m-b-5">মোট লাভ</div><i class="ti-user widget-stat-icon"></i>
                 </div>
             </div>
         </div>
@@ -104,47 +104,37 @@
             </div>
         </div>
         <div class="col-lg-4">
+            @if(!empty($cash_in_hands))
             <div class="ibox">
                 <div class="ibox-head">
                     <div class="ibox-title">হাতে টাকা আছে</div>
                 </div>
                 <div class="ibox-body">
                     <ul class="media-list media-list-divider m-0">
-                        <li class="media">
-                            <a class="media-img" href="javascript:;">
-                                <img class="img-circle" src="./assets/img/users/u1.jpg" width="40" />
-                            </a>
-                            <div class="media-body">
-                                <div class="media-heading">Jeanne Gonzalez <small class="float-right text-muted">12:05</small></div>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a class="media-img" href="javascript:;">
-                                <img class="img-circle" src="./assets/img/users/u2.jpg" width="40" />
-                            </a>
-                            <div class="media-body">
-                                <div class="media-heading">Becky Brooks <small class="float-right text-muted">1 hrs ago</small></div>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a class="media-img" href="javascript:;">
-                                <img class="img-circle" src="./assets/img/users/u3.jpg" width="40" />
-                            </a>
-                            <div class="media-body">
-                                <div class="media-heading">Frank Cruz <small class="float-right text-muted">3 hrs ago</small></div>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a class="media-img" href="javascript:;">
-                                <img class="img-circle" src="./assets/img/users/u6.jpg" width="40" />
-                            </a>
-                            <div class="media-body">
-                                <div class="media-heading">Connor Perez <small class="float-right text-muted">Today</small></div>
-                            </div>
-                        </li>
+                        @foreach($cash_in_hands as $cash_in_hand)
+                            <li class="media">
+                                @if($cash_in_hand->user->getFirstMediaUrl('avatar', 'medium'))
+                                    <a class="media-img" href="javascript:;">
+                                        <img src="{{ asset($cash_in_hand->user->getFirstMediaUrl('avatar', 'medium')) }}" width="50px;" />
+                                    </a>
+                                @else
+                                    <a class="media-img" href="javascript:;">
+                                        <img src="./assets/img/image.jpg" width="50px;" />
+                                    </a>
+                                @endif
+                                <div class="media-body">
+                                    <div class="media-heading">
+                                        {{ $cash_in_hand->user->name }}
+                                        <span class="font-16 float-right">টাকাঃ {{ $cash_in_hand->amount }}</span>
+                                    </div>
+                                    <div class="font-13">{{ $cash_in_hand->user->phone }}</div>
+                                </div>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
+            @endif
         </div>
     </div>
     <div class="ibox">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Account;
 use App\Classes\Helper;
+use App\Collection;
 use App\Package;
 use App\User;
 use Illuminate\Http\Request;
@@ -20,11 +21,11 @@ class AccountController extends Controller
     public function index()
     {
         $users = User::where('status', 1)->get();
-        $packages = Package::where('status', 1)->get();
+        $packages = Package::where('status', 1)->where('id', '>', 1)->get();
         $accounts = Account::with(['user:id,name', 'package:id,name'])->latest()->paginate(15);
         $account = new Account;
         $col_data=array();
-        $col_heads = array('নাম', 'প্যাকেজ নাম', 'তারিখ', 'টাকা', 'স্টাটার্স', 'অপশন');
+        $col_heads = array('নাম', 'প্যাকেজ নাম','প্যাকেজ টাইপ', 'তারিখ', 'টাকা', 'স্টাটার্স', 'অপশন');
 
         foreach ($accounts as $value) {
             $form_url = route('account.destroy', $value->id);
@@ -33,6 +34,7 @@ class AccountController extends Controller
             $col_data[] = array(
                 $value->user->name,
                 $value->package->name,
+                Helper::packageType($value->type),
                 $value->date,
                 $value->amount,
                 Helper::status_change($status_change_url, 'accounts', $value->id, 'status', $value->status, 'Done', 'Active', 'Account Status Change'),
@@ -76,8 +78,29 @@ class AccountController extends Controller
         $account->create_by = Auth::id();
         $account->date = $request->date;
         $account->amount = $amount;
+        $account->type = $package->type;
         $account->status = 0;
         $account->save();
+
+        if ($package->type == 0) {
+            $collection = new Collection;
+            $collection->account_id = $account->id;
+            $collection->collect_by = Auth::id();
+            $collection->date = $account->date;
+            $collection->amount = $package->start_amount * -1;
+            $collection->description = "লোন নিয়েছেন";
+            $collection->type = $package->type;
+            $collection->save();
+        } else {
+            $collection = new Collection;
+            $collection->account_id = $account->id;
+            $collection->collect_by = Auth::id();
+            $collection->date = $account->date;
+            $collection->amount = 0;
+            $collection->description = 'নতুন একাউন্ট';
+            $collection->type = $package->type;
+            $collection->save();
+        }
 
         Session::flash('success', 'Success');
         return back();
@@ -106,7 +129,7 @@ class AccountController extends Controller
         $packages = Package::where('status', 1)->get();
         $accounts = Account::with(['user:id,name', 'package:id,name'])->latest()->paginate(15);
         $col_data=array();
-        $col_heads = array('নাম', 'প্যাকেজ নাম', 'তারিখ', 'টাকা', 'স্টাটার্স', 'অপশন');
+        $col_heads = array('নাম', 'প্যাকেজ নাম','প্যাকেজ টাইপ', 'তারিখ', 'টাকা', 'স্টাটার্স', 'অপশন');
 
         foreach ($accounts as $value) {
             $form_url = route('account.destroy', $value->id);
@@ -115,6 +138,7 @@ class AccountController extends Controller
             $col_data[] = array(
                 $value->user->name,
                 $value->package->name,
+                Helper::packageType($value->type),
                 $value->date,
                 $value->amount,
                 Helper::status_change($status_change_url, 'accounts', $value->id, 'status', $value->status, 'Done', 'Active', 'Account Status Change'),

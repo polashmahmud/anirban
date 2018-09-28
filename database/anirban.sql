@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 27, 2018 at 10:42 AM
+-- Generation Time: Sep 28, 2018 at 08:51 AM
 -- Server version: 5.7.21-0ubuntu0.16.04.1
 -- PHP Version: 7.1.20-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -35,6 +35,7 @@ CREATE TABLE `accounts` (
   `create_by` int(10) UNSIGNED NOT NULL,
   `date` date NOT NULL,
   `amount` double(8,2) NOT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=lone,1=saving,2=investment',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=active,1=done',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -44,10 +45,38 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `user_id`, `package_id`, `create_by`, `date`, `amount`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, '2018-09-27', 5.00, 0, '2018-09-27 04:15:46', '2018-09-27 04:15:46'),
-(2, 1, 1, 1, '2018-09-28', 121.00, 1, '2018-09-27 04:17:21', '2018-09-27 04:27:19'),
-(4, 1, 2, 1, '2018-09-27', 5.00, 0, '2018-09-27 04:34:42', '2018-09-27 04:34:42');
+INSERT INTO `accounts` (`id`, `user_id`, `package_id`, `create_by`, `date`, `amount`, `type`, `status`, `created_at`, `updated_at`) VALUES
+(8, 2, 2, 1, '2018-09-28', 100.00, 0, 0, '2018-09-28 02:26:58', '2018-09-28 02:26:58'),
+(9, 2, 4, 1, '2018-09-28', 100.00, 1, 0, '2018-09-28 02:28:16', '2018-09-28 02:28:16'),
+(10, 1, 3, 1, '2018-09-28', 100.00, 2, 0, '2018-09-28 02:28:26', '2018-09-28 02:28:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `collections`
+--
+
+CREATE TABLE `collections` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `account_id` int(10) UNSIGNED NOT NULL,
+  `collect_by` int(10) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `amount` double(8,2) NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=lone,1=collection,2=investment,3=transfer,4=others',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `collections`
+--
+
+INSERT INTO `collections` (`id`, `account_id`, `collect_by`, `date`, `amount`, `description`, `type`, `created_at`, `updated_at`) VALUES
+(25, 8, 1, '2018-09-28', -500.00, 'লোন নিয়েছেন', 0, '2018-09-28 02:26:58', '2018-09-28 02:26:58'),
+(26, 9, 1, '2018-09-28', 0.00, 'নতুন একাউন্ট', 1, '2018-09-28 02:28:16', '2018-09-28 02:28:16'),
+(27, 10, 1, '2018-09-28', 0.00, 'নতুন একাউন্ট', 2, '2018-09-28 02:28:26', '2018-09-28 02:28:26'),
+(28, 10, 1, '2018-09-29', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 02:28:54', '2018-09-28 02:28:54');
 
 -- --------------------------------------------------------
 
@@ -78,8 +107,8 @@ CREATE TABLE `media` (
 --
 
 INSERT INTO `media` (`id`, `model_type`, `model_id`, `collection_name`, `name`, `file_name`, `mime_type`, `disk`, `size`, `manipulations`, `custom_properties`, `responsive_images`, `order_column`, `created_at`, `updated_at`) VALUES
-(4, 'App\\User', 1, 'avatar', 'download', 'download.png', 'image/png', 'media', 8902, '[]', '{\"custom_headers\": [], \"generated_conversions\": {\"small\": true, \"thumb\": true, \"medium\": true}}', '[]', 3, '2018-09-26 02:45:14', '2018-09-26 02:45:15'),
-(8, 'App\\User', 3, 'avatar', 'images (2)', 'images-(2).jpeg', 'image/jpeg', 'media', 7609, '[]', '{\"custom_headers\": [], \"generated_conversions\": {\"small\": true, \"thumb\": true, \"medium\": true}}', '[]', 4, '2018-09-26 02:48:11', '2018-09-26 02:48:11');
+(1, 'App\\User', 1, 'avatar', 'maleavatarthumb', 'maleavatarthumb.png', 'image/png', 'media', 24906, '[]', '{\"custom_headers\": [], \"generated_conversions\": {\"small\": true, \"thumb\": true, \"medium\": true}}', '[]', 1, '2018-09-27 13:29:37', '2018-09-27 13:29:38'),
+(2, 'App\\User', 2, 'avatar', 'images (1)', 'images-(1).jpeg', 'image/jpeg', 'media', 8532, '[]', '{\"custom_headers\": [], \"generated_conversions\": {\"small\": true, \"thumb\": true, \"medium\": true}}', '[]', 2, '2018-09-27 13:38:34', '2018-09-27 13:38:35');
 
 -- --------------------------------------------------------
 
@@ -98,12 +127,13 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(3, '2014_10_12_000000_create_users_table', 1),
-(4, '2014_10_12_100000_create_password_resets_table', 1),
-(5, '2018_09_25_232837_create_media_table', 2),
-(6, '2018_09_26_072522_create_profiles_table', 3),
-(8, '2018_09_26_091324_create_packages_table', 4),
-(9, '2018_09_27_083004_create_accounts_table', 5);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2018_09_25_232837_create_media_table', 1),
+(4, '2018_09_26_072522_create_profiles_table', 1),
+(5, '2018_09_26_091324_create_packages_table', 1),
+(6, '2018_09_27_083004_create_accounts_table', 1),
+(7, '2018_09_27_163048_create_collections_table', 1);
 
 -- --------------------------------------------------------
 
@@ -132,8 +162,10 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`id`, `user_id`, `name`, `description`, `start_amount`, `end_amount`, `collection_amount`, `type`, `period`, `installment`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '5000 টাকা লোন', 'Lone', 5000.00, 6000.00, 0.00, 0, 0, 100, 1, '2018-09-26 11:29:51', '2018-09-26 11:29:51'),
-(2, 1, '1000 TK Lone', NULL, 10000.00, 11000.00, 120.00, 0, 0, 100, 1, '2018-09-27 01:21:28', '2018-09-27 01:24:41');
+(1, 1, 'সমিতির ব্যবহারের জন্য', 'এটা শুধু মাত্র সমিতির ব্যবহারের জন্য ব্যবহৃত হবে।', 0.00, 0.00, 0.00, 2, 0, 0, 1, '2018-09-27 13:30:50', '2018-09-27 13:30:50'),
+(2, 1, '500 Lone', NULL, 500.00, 600.00, 100.00, 0, 0, 5, 1, '2018-09-27 13:38:09', '2018-09-27 13:38:09'),
+(3, 1, '10000 TK Sonchoy', NULL, 10000.00, 10100.00, 100.00, 2, 0, 20, 1, '2018-09-27 13:42:03', '2018-09-27 13:42:03'),
+(4, 1, 'Saving 100', NULL, 100.00, 200.00, 100.00, 1, 0, 200, 1, '2018-09-28 02:28:07', '2018-09-28 02:28:07');
 
 -- --------------------------------------------------------
 
@@ -165,7 +197,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `user_id`, `created_at`, `updated_at`) VALUES
-(2, 3, '2018-09-26 02:00:54', '2018-09-26 02:00:54');
+(1, 2, '2018-09-27 13:38:35', '2018-09-27 13:38:35');
 
 -- --------------------------------------------------------
 
@@ -193,8 +225,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `phone`, `email`, `join`, `email_verified_at`, `password`, `role`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Polash Mahmud', '8801678126086', 'polashmahmud@gmail.com', '2018-09-26', NULL, '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 2, 1, NULL, NULL, '2018-09-26 02:45:15'),
-(3, 'Polash Mahmud', '88 01594 359 435', 'breitenberg.tremaine@example.com', '2018-09-21', NULL, '$2y$10$esjoLZ3fWyVmYdSfCW3sSO77qqCTZqkw.OgkpD6gBvTuyxOHn.ASO', 0, 1, NULL, '2018-09-26 02:00:53', '2018-09-26 02:44:58');
+(1, 'Polash Mahmud', '8801678126086', 'polashmahmud@gmail.com', '2018-09-26', NULL, '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 2, 1, NULL, NULL, '2018-09-25 20:45:15'),
+(2, 'Test User', '8801594359435', 'breitenberg.tremaine@example.com', '2018-09-27', NULL, '$2y$10$Ph1s7muLlm9u7NlLoeX11uOcMegbc809coxnaMmUXVHMpMAIuP8kq', 0, 1, NULL, '2018-09-27 13:38:34', '2018-09-27 13:38:34');
 
 --
 -- Indexes for dumped tables
@@ -208,6 +240,14 @@ ALTER TABLE `accounts`
   ADD KEY `accounts_user_id_foreign` (`user_id`),
   ADD KEY `accounts_create_by_foreign` (`create_by`),
   ADD KEY `accounts_package_id_foreign` (`package_id`);
+
+--
+-- Indexes for table `collections`
+--
+ALTER TABLE `collections`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `collections_account_id_foreign` (`account_id`),
+  ADD KEY `collections_collect_by_foreign` (`collect_by`);
 
 --
 -- Indexes for table `media`
@@ -258,37 +298,43 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `collections`
+--
+ALTER TABLE `collections`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -301,6 +347,13 @@ ALTER TABLE `accounts`
   ADD CONSTRAINT `accounts_create_by_foreign` FOREIGN KEY (`create_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `accounts_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`),
   ADD CONSTRAINT `accounts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `collections`
+--
+ALTER TABLE `collections`
+  ADD CONSTRAINT `collections_account_id_foreign` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `collections_collect_by_foreign` FOREIGN KEY (`collect_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `packages`
