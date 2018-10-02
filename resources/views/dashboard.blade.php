@@ -10,18 +10,13 @@
     <script>
         $(function() {
             var a = {
-                    labels: ["Sunday", "Munday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                    labels: {!! $chart_month !!},
                     datasets: [{
-                        label: "Data 1",
+                        label: "কালেকশন",
                         borderColor: 'rgba(52,152,219,1)',
                         backgroundColor: 'rgba(52,152,219,1)',
                         pointBackgroundColor: 'rgba(52,152,219,1)',
-                        data: [29, 48, 40, 19, 78, 31, 85]
-                    },{
-                        label: "Data 2",
-                        backgroundColor: "#DADDE0",
-                        borderColor: "#DADDE0",
-                        data: [45, 80, 58, 74, 54, 59, 40]
+                        data: {!! $chart_amount !!}
                     }]
                 },
                 t = {
@@ -80,19 +75,19 @@
                     <div class="flexbox mb-4">
                         <div>
                             <h3 class="m-0">চার্ট</h3>
-                            <div>ঋণ / সঞ্চয়</div>
+                            <div>প্রতিদিনের কালেকশন</div>
                         </div>
                         <div class="d-inline-flex">
                             <div class="px-3" style="border-right: 1px solid rgba(0,0,0,.1);">
-                                <div class="text-muted">সর্বমোট জমা</div>
+                                <div class="text-muted">আজ কালেকশণ</div>
                                 <div>
-                                    <span class="h2 m-0">$850</span>
+                                    <span class="h2 m-0">{{ $todayCollection }}</span>
                                 </div>
                             </div>
                             <div class="px-3">
-                                <div class="text-muted">সর্বমোট ঋণ</div>
+                                <div class="text-muted">সর্বমোট সদস্য</div>
                                 <div>
-                                    <span class="h2 m-0">240</span>
+                                    <span class="h2 m-0">{{ $total_user }}</span>
                                 </div>
                             </div>
                         </div>

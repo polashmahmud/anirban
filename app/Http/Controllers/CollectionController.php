@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Account;
+use App\Classes\Helper;
 use App\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,8 @@ class CollectionController extends Controller
             $accounts = Account::with(['user:id,name','package'])->where([['status', 0], ['type', 1]])->get();
         } elseif ($request->type == 'investment') {
             $accounts = Account::with(['user:id,name','package'])->where([['status', 0], ['type', 2]])->get();
+        } elseif ($request->type == 'done') {
+            $accounts = Account::with(['user:id,name','package'])->where('status', 1)->get();
         } else {
             $accounts = Account::with(['user:id,name','package'])->where('status', 0)->get();
         }
@@ -50,13 +53,15 @@ class CollectionController extends Controller
     {
         $account = Account::find($request->account_id);
         $last_date = Collection::with('account:amount')->where('account_id', $request->account_id)->get()->last();
-        $date = date('Y/m/d', strtotime("+1 day", strtotime($last_date->date)));
+
+        $date = $request->date ? $request->date : date('Y/m/d', strtotime("+1 day", strtotime($last_date->date)));
+        $amount = $request->amount ? $request->amount : $account->amount;
 
         $collection = new Collection;
         $collection->account_id = $request->account_id;
         $collection->collect_by = Auth::id();
         $collection->date = $date;
-        $collection->amount = $account->amount;
+        $collection->amount = $amount;
         $collection->description = "জমা দিয়েছেন";
         $collection->type = 1;
         $collection->save();
@@ -71,9 +76,13 @@ class CollectionController extends Controller
      * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function show(Collection $collection)
+    public function show($id)
     {
-        //
+        $collections = Collection::with( 'user')->where('account_id', $id)->latest()->paginate(15);
+        $collection = new Collection;
+        $account_id = $id;
+
+        return view('collection.show', compact('collections','collection', 'account_id'));
     }
 
     /**
@@ -82,9 +91,11 @@ class CollectionController extends Controller
      * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function edit(Collection $collection)
+    public function edit(Request $request, Collection $collection)
     {
-        //
+        $collections = Collection::with( 'user')->where('account_id', $request->account_id)->latest()->paginate(15);
+
+        return view('collection.show', compact('collections','collection'));
     }
 
     /**
@@ -96,7 +107,11 @@ class CollectionController extends Controller
      */
     public function update(Request $request, Collection $collection)
     {
-        //
+        $collection->fill($request->all());
+        $collection->save();
+
+        Session::flash('success', 'Success');
+        return back();
     }
 
     /**
@@ -107,6 +122,9 @@ class CollectionController extends Controller
      */
     public function destroy(Collection $collection)
     {
-        //
+        $collection->delete();
+
+        Session::flash('success', 'Success');
+        return back();
     }
 }

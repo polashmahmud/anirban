@@ -86,7 +86,15 @@
                     <a class="dropdown-item" href="profile.html"><i class="fa fa-user"></i>প্রফাইল</a>
                     <a class="dropdown-item" href="profile.html"><i class="fa fa-cog"></i>সেটিংস</a>
                     <li class="dropdown-divider"></li>
-                    <a class="dropdown-item" href="login.html"><i class="fa fa-power-off"></i>লগ আউট</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+                        <i class="fa fa-power-off"></i>লগ আউট
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </ul>
             </li>
         </ul>

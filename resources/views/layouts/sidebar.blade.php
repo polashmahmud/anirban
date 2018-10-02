@@ -37,6 +37,9 @@
                         <a href="{{ route('collection.index') }}?type=investment">ইনভেস্টমেন্ট কালেকশন</a>
                     </li>
                     <li>
+                        <a href="{{ route('collection.index') }}?type=done">সকল সম্পূর্ণ একাউন্ট</a>
+                    </li>
+                    <li>
                         <a href="{{ route('collection.index') }}">সকল কালেকশন</a>
                     </li>
                 </ul>
@@ -54,6 +57,11 @@
             <li>
                 <a class="active" href="{{ route('debit-credit.index') }}"><i class="sidebar-item-icon fa fa-bookmark-o"></i>
                     <span class="nav-label">জমা/খরচ</span>
+                </a>
+            </li>
+            <li>
+                <a class="active" href="{{ route('transfer-amount.index') }}"><i class="sidebar-item-icon fa fa-bookmark-o"></i>
+                    <span class="nav-label">Transfer Amount</span>
                 </a>
             </li>
         </ul>
