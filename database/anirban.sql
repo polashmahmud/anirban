@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 28, 2018 at 08:51 AM
+-- Generation Time: Oct 02, 2018 at 09:32 PM
 -- Server version: 5.7.21-0ubuntu0.16.04.1
 -- PHP Version: 7.1.20-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -46,7 +46,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `user_id`, `package_id`, `create_by`, `date`, `amount`, `type`, `status`, `created_at`, `updated_at`) VALUES
-(8, 2, 2, 1, '2018-09-28', 100.00, 0, 0, '2018-09-28 02:26:58', '2018-09-28 02:26:58'),
+(1, 2, 2, 1, '2018-09-28', 100.00, 2, 1, '2018-09-28 02:26:58', '2018-09-28 02:26:58'),
 (9, 2, 4, 1, '2018-09-28', 100.00, 1, 0, '2018-09-28 02:28:16', '2018-09-28 02:28:16'),
 (10, 1, 3, 1, '2018-09-28', 100.00, 2, 0, '2018-09-28 02:28:26', '2018-09-28 02:28:26');
 
@@ -73,10 +73,28 @@ CREATE TABLE `collections` (
 --
 
 INSERT INTO `collections` (`id`, `account_id`, `collect_by`, `date`, `amount`, `description`, `type`, `created_at`, `updated_at`) VALUES
-(25, 8, 1, '2018-09-28', -500.00, 'লোন নিয়েছেন', 0, '2018-09-28 02:26:58', '2018-09-28 02:26:58'),
+(25, 1, 1, '2018-09-28', -500.00, 'লোন নিয়েছেন', 0, '2018-09-28 02:26:58', '2018-09-28 02:26:58'),
 (26, 9, 1, '2018-09-28', 0.00, 'নতুন একাউন্ট', 1, '2018-09-28 02:28:16', '2018-09-28 02:28:16'),
-(27, 10, 1, '2018-09-28', 0.00, 'নতুন একাউন্ট', 2, '2018-09-28 02:28:26', '2018-09-28 02:28:26'),
-(28, 10, 1, '2018-09-29', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 02:28:54', '2018-09-28 02:28:54');
+(27, 10, 1, '2018-08-28', 500.00, 'নতুন একাউন্ট', 1, '2018-09-28 02:28:26', '2018-09-28 02:28:26'),
+(28, 10, 1, '2018-09-29', 700.00, 'জমা দিয়েছেন', 1, '2018-09-28 02:28:54', '2018-09-28 02:28:54'),
+(30, 1, 1, '2018-08-28', -100.00, 'Member One 1 কে 100 টাকা দিয়েছেন', 3, '2018-09-28 12:33:05', '2018-09-28 12:33:05'),
+(31, 1, 3, '2018-09-28', 100.00, 'Polash Mahmud হতে 100 টাকা পেয়েছেন', 3, '2018-09-28 12:33:05', '2018-09-28 12:33:05'),
+(32, 1, 1, '2018-09-28', -50.00, 'Member One 1 কে 50 টাকা দিয়েছেন', 3, '2018-09-28 12:34:39', '2018-09-28 12:34:39'),
+(33, 1, 3, '2018-09-29', 50.00, 'Polash Mahmud হতে 50 টাকা পেয়েছেন', 3, '2018-09-28 12:34:39', '2018-09-28 12:34:39'),
+(34, 1, 1, '2018-09-29', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 13:02:20', '2018-09-28 13:02:20'),
+(35, 1, 1, '2018-06-30', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 13:02:36', '2018-09-28 13:02:36'),
+(36, 1, 1, '2018-10-01', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 13:02:38', '2018-09-28 13:02:38'),
+(37, 10, 1, '2018-09-29', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 21:14:07', '2018-09-28 21:14:07'),
+(38, 10, 1, '2018-09-29', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 21:14:15', '2018-09-28 21:14:15'),
+(39, 10, 1, '2018-09-29', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 21:14:20', '2018-09-28 21:14:20'),
+(41, 9, 1, '2018-10-04', 5002.00, 'জমা দিয়েছেন', 1, '2018-09-28 21:18:27', '2018-09-28 21:24:11'),
+(43, 10, 1, '2018-09-30', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 21:47:26', '2018-09-28 21:47:26'),
+(44, 10, 1, '2018-10-01', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 21:47:27', '2018-09-28 21:47:27'),
+(45, 10, 1, '2018-10-02', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 21:47:51', '2018-09-28 21:47:51'),
+(46, 9, 1, '2018-10-05', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 21:47:56', '2018-09-28 21:47:56'),
+(47, 10, 1, '2018-10-03', 100.00, 'জমা দিয়েছেন', 1, '2018-09-28 21:48:00', '2018-09-28 21:48:00'),
+(48, 10, 1, '2018-10-04', 100.00, 'জমা দিয়েছেন', 1, '2018-09-30 22:18:25', '2018-09-30 22:18:25'),
+(49, 10, 1, '2018-10-05', 100.00, 'জমা দিয়েছেন', 1, '2018-09-30 22:25:01', '2018-09-30 22:25:01');
 
 -- --------------------------------------------------------
 
@@ -108,7 +126,10 @@ CREATE TABLE `media` (
 
 INSERT INTO `media` (`id`, `model_type`, `model_id`, `collection_name`, `name`, `file_name`, `mime_type`, `disk`, `size`, `manipulations`, `custom_properties`, `responsive_images`, `order_column`, `created_at`, `updated_at`) VALUES
 (1, 'App\\User', 1, 'avatar', 'maleavatarthumb', 'maleavatarthumb.png', 'image/png', 'media', 24906, '[]', '{\"custom_headers\": [], \"generated_conversions\": {\"small\": true, \"thumb\": true, \"medium\": true}}', '[]', 1, '2018-09-27 13:29:37', '2018-09-27 13:29:38'),
-(2, 'App\\User', 2, 'avatar', 'images (1)', 'images-(1).jpeg', 'image/jpeg', 'media', 8532, '[]', '{\"custom_headers\": [], \"generated_conversions\": {\"small\": true, \"thumb\": true, \"medium\": true}}', '[]', 2, '2018-09-27 13:38:34', '2018-09-27 13:38:35');
+(2, 'App\\User', 2, 'avatar', 'images (1)', 'images-(1).jpeg', 'image/jpeg', 'media', 8532, '[]', '{\"custom_headers\": [], \"generated_conversions\": {\"small\": true, \"thumb\": true, \"medium\": true}}', '[]', 2, '2018-09-27 13:38:34', '2018-09-27 13:38:35'),
+(3, 'App\\User', 3, 'avatar', '80318102-homme-d-affaires-dessin-animé-personnage-jeune-mâle-professionnel-illustration-vectorielle', '80318102-homme-d-affaires-dessin-animé-personnage-jeune-mâle-professionnel-illustration-vectorielle.jpg', 'image/jpeg', 'media', 89256, '[]', '{\"custom_headers\": [], \"generated_conversions\": {\"small\": true, \"thumb\": true, \"medium\": true}}', '[]', 3, '2018-09-28 12:00:16', '2018-09-28 12:00:16'),
+(4, 'App\\User', 4, 'avatar', 'images (2)', 'images-(2).jpeg', 'image/jpeg', 'media', 7609, '[]', '{\"custom_headers\": [], \"generated_conversions\": {\"small\": true, \"thumb\": true, \"medium\": true}}', '[]', 4, '2018-09-28 12:00:50', '2018-09-28 12:00:51'),
+(5, 'App\\User', 6, 'avatar', 'google', 'google.pdf', 'application/pdf', 'media', 52799, '[]', '{\"custom_headers\": []}', '[]', 5, '2018-09-28 22:00:44', '2018-09-28 22:00:44');
 
 -- --------------------------------------------------------
 
@@ -197,7 +218,10 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 2, '2018-09-27 13:38:35', '2018-09-27 13:38:35');
+(1, 2, '2018-09-27 13:38:35', '2018-09-27 13:38:35'),
+(2, 3, '2018-09-28 12:00:16', '2018-09-28 12:00:16'),
+(3, 4, '2018-09-28 12:00:51', '2018-09-28 12:00:51'),
+(4, 6, '2018-09-28 22:00:44', '2018-09-28 22:00:44');
 
 -- --------------------------------------------------------
 
@@ -225,8 +249,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `phone`, `email`, `join`, `email_verified_at`, `password`, `role`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Polash Mahmud', '8801678126086', 'polashmahmud@gmail.com', '2018-09-26', NULL, '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 2, 1, NULL, NULL, '2018-09-25 20:45:15'),
-(2, 'Test User', '8801594359435', 'breitenberg.tremaine@example.com', '2018-09-27', NULL, '$2y$10$Ph1s7muLlm9u7NlLoeX11uOcMegbc809coxnaMmUXVHMpMAIuP8kq', 0, 1, NULL, '2018-09-27 13:38:34', '2018-09-27 13:38:34');
+(1, 'Polash Mahmud', '8801678126086', 'polashmahmud@gmail.com', '2018-09-26', NULL, '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 2, 1, 'TcccTGVozDsgZ28i9V0FlWnnudH7t4ri01Yx2LgUoGpZU6oSgEDHUlk4ecZp', NULL, '2018-09-25 20:45:15'),
+(2, 'Test User', '8801594359435', 'breitenberg.tremaine@example.com', '2018-09-27', NULL, '$2y$10$Ph1s7muLlm9u7NlLoeX11uOcMegbc809coxnaMmUXVHMpMAIuP8kq', 0, 1, NULL, '2018-09-27 13:38:34', '2018-09-27 13:38:34'),
+(3, 'Member One 1', '8801145245236', 'member1@anirban.com', '2018-09-28', NULL, '$2y$10$9bGPkDQMzH5jVNsUdmy3Xu69kOHE.UJ7wHz7JSlCUYINBTeKc0ju6', 1, 1, NULL, '2018-09-28 12:00:16', '2018-09-28 12:00:16'),
+(4, 'Member Two', '8801452452536', 'mamun@acc.com', '2018-09-28', NULL, '$2y$10$JQgb3olP/8fQWV9Ulnfz8uXjz9Hk6R3WJ8LJsSyitQJdq35.JuSYi', 1, 1, NULL, '2018-09-28 12:00:50', '2018-09-28 12:00:50'),
+(6, 'Test User', '8801780506523', 'breitenberg.tremaine@example.com56', '2018-09-29', NULL, '$2y$10$ib8Zr0Z.MkHpgejLsl.xVugv8vN/v8j.mevjtnUJVfp8HDWPmQe9K', 0, 1, NULL, '2018-09-28 22:00:43', '2018-09-28 22:00:43');
 
 --
 -- Indexes for dumped tables
@@ -304,13 +331,13 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `collections`
 --
 ALTER TABLE `collections`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -328,13 +355,13 @@ ALTER TABLE `packages`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
