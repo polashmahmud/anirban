@@ -22,6 +22,7 @@ class CreateAccountsTable extends Migration
             $table->double('amount',8,2);
             $table->boolean('type')->default(false)->comment('0=lone,1=saving,2=investment');
             $table->boolean('status')->default(false)->comment('0=active,1=done');
+            $table->boolean('branch')->default(false)->comment('0=Polash,1=Soriful');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

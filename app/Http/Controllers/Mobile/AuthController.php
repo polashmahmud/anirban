@@ -10,6 +10,10 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            return redirect('/mobile/dashboard');
+        }
+
         return view('mobile.login');
     }
 

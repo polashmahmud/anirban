@@ -89,6 +89,52 @@
                             </div>
                         @endif
 
+                        @if($account->exists)
+                            <div class="form-group">
+                                <label>Branch</label>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="ui-radio ui-radio-primary">
+                                                <input type="radio" name="branch" value="1" @if($account->branch == 1) checked @endif>
+                                                <span class="input-span"></span>Soriful
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="ui-radio ui-radio-success">
+                                                <input type="radio" name="branch" value="0" @if($account->branch == 0) checked @endif>
+                                                <span class="input-span"></span>Polash
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="form-group">
+                                <label>Branch</label>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="ui-radio ui-radio-primary">
+                                                <input type="radio" name="branch" value="1" checked="">
+                                                <span class="input-span"></span>Soriful
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="ui-radio ui-radio-success">
+                                                <input type="radio" name="branch" value="0">
+                                                <span class="input-span"></span>Polash
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
 
                         <div class="form-group">
                             <label>কিস্তির টাকার পরিমান</label>

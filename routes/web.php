@@ -51,11 +51,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('mobile')->group(function () {
     Route::get('login', 'Mobile\AuthController@showLoginForm')->name('mobile.login');
     Route::post('login', 'Mobile\AuthController@login');
+
     Route::get('dashboard', 'Mobile\DashboardController@index')->name('mobile.dashboard');
-    Route::get('investment', 'Mobile\InvestmentController@index')->name('mobile.investment');
-    Route::get('investment/{id}', 'Mobile\InvestmentController@show')->name('mobile.investment.show');
-    Route::get('lone', 'Mobile\LoneController@index')->name('mobile.lone');
-    Route::get('saving', 'Mobile\SavingController@index')->name('mobile.saving');
+
+    Route::get('accounts/branch', 'Mobile\AccountsController@branch')->name('mobile.accounts.branch');
+    Route::get('accounts', 'Mobile\AccountsController@index')->name('mobile.accounts');
+    Route::get('accounts/{id}', 'Mobile\AccountsController@show')->name('mobile.accounts.show');
+    Route::post('accounts', 'Mobile\AccountsController@store')->name('mobile.accounts.store');
+
     Route::get('new-account', 'Mobile\NewAccountController@index')->name('mobile.new.account');
     Route::get('money-transfer', 'Mobile\MoneyTransferController@index')->name('mobile.money.transfer');
     Route::get('debit-credit', 'Mobile\DebitCreditController@index')->name('mobile.debit.credit');

@@ -15,29 +15,15 @@
 </div>
 <div class="w3-row w3-center">
     <div class="w3-col s6" style="border-right: 1px solid #33333321; border-bottom: 1px solid #33333321;">
-        <a href="{{ route('mobile.investment') }}">
-            <img src="img/university-solid.svg" style="width:60%; height: 120px; padding: 10px;">
-            <p>ইনভেস্টমেন্ট</p>
-        </a>
-    </div>
-    <div class="w3-col s6" style="border-bottom: 1px solid #33333321;">
-        <a href="{{ route('mobile.lone') }}">
-            <img src="img/people-carry-solid.svg" style="width:60%; height: 120px; padding: 10px;">
-            <p>ঋণ একাউন্ট</p>
-        </a>
-    </div>
-</div>
-<div class="w3-row w3-center">
-    <div class="w3-col s6" style="border-right: 1px solid #33333321; border-bottom: 1px solid #33333321;">
-        <a href="{{ route('mobile.saving') }}">
-            <img src="img/hand-holding-usd-solid.svg" style="width:60%; height: 120px; padding: 10px;">
-            <p>সঞ্চয় একাউন্ট</p>
-        </a>
-    </div>
-    <div class="w3-col s6" style="border-bottom: 1px solid #33333321;">
         <a href="{{ route('mobile.new.account') }}">
             <img src="img/user-tie-solid.svg" style="width:60%; height: 120px; padding: 10px;">
             <p>নতুন একাউন্ট</p>
+        </a>
+    </div>
+    <div class="w3-col s6" style="border-bottom: 1px solid #33333321;">
+        <a href="{{ route('mobile.accounts.branch') }}">
+            <img src="img/people-carry-solid.svg" style="width:60%; height: 120px; padding: 10px;">
+            <p>টাকা কালেকশন</p>
         </a>
     </div>
 </div>

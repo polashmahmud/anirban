@@ -26,6 +26,10 @@ class CollectionController extends Controller
             $accounts = Account::with(['user:id,name','package'])->where([['status', 0], ['type', 2]])->get();
         } elseif ($request->type == 'done') {
             $accounts = Account::with(['user:id,name','package'])->where('status', 1)->get();
+        } elseif ($request->branch == 'soriful') {
+            $accounts = Account::with(['user:id,name','package'])->where([['status', 0], ['branch', 1]])->get();
+        } elseif ($request->branch == 'polash') {
+            $accounts = Account::with(['user:id,name','package'])->where([['status', 0], ['branch', 0]])->get();
         } else {
             $accounts = Account::with(['user:id,name','package'])->where('status', 0)->get();
         }

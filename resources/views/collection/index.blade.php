@@ -22,7 +22,7 @@
                             <img class="img-circle m-r-10 pull-left" src="./assets/img/users/u2.jpg" style="width:28px;">
                         @endif
 
-                        <h6 class="m-0">{{ $account->user->name }}</h6><small class="text-muted"><span class="badge badge-default m-r-5 m-b-5">{{ \App\Classes\Helper::collectionLastDate($account->id) }}</span>  {!! html_entity_decode(\App\Classes\Helper::packageType($account->package->type)) !!} </small>
+                        <h6 class="m-0">{{ $account->user->name }} (AAN-{{$account->id}})</h6><small class="text-muted"><span class="badge badge-default m-r-5 m-b-5">{{ \App\Classes\Helper::collectionLastDate($account->id) }}</span>  {!! html_entity_decode(\App\Classes\Helper::packageType($account->package->type)) !!} </small>
                         <div class="pull-right text-danger" style="margin-top: -8px;">TK: {{ $account->package->end_amount - $account->collections->sum('amount') }}</div>
                     </div>
                     <div class="card-body">

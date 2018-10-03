@@ -25,7 +25,7 @@ class AccountController extends Controller
         $accounts = Account::with(['user:id,name', 'package:id,name'])->latest()->paginate(15);
         $account = new Account;
         $col_data=array();
-        $col_heads = array('নাম', 'প্যাকেজ নাম','প্যাকেজ টাইপ', 'তারিখ', 'টাকা', 'স্টাটার্স', 'অপশন');
+        $col_heads = array('নাম', 'প্যাকেজ নাম','প্যাকেজ টাইপ', 'তারিখ', 'টাকা', 'ব্রাঞ্চ', 'স্টাটার্স', 'অপশন');
 
         foreach ($accounts as $value) {
             $form_url = route('account.destroy', $value->id);
@@ -37,6 +37,7 @@ class AccountController extends Controller
                 Helper::packageType($value->type),
                 $value->date,
                 $value->amount,
+                $value->branch ? "শরিফুল" : "পলাশ",
                 Helper::status_change($status_change_url, 'accounts', $value->id, 'status', $value->status, 'Done', 'Active', 'Account Status Change'),
                 "<a class='btn btn-default btn-xs m-r-5' data-toggle=\"tooltip\" data-original-title=\"Edit\" href=\"$edit_url\"><i class=\"ti-pencil-alt color-success font-14\"></i></a> " .
                 Helper::delete_form($form_url, $value->id)
@@ -80,6 +81,7 @@ class AccountController extends Controller
         $account->amount = $amount;
         $account->type = $package->type;
         $account->status = 0;
+        $account->branch = $request->branch;
         $account->save();
 
         if ($package->type == 0) {

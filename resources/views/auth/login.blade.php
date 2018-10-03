@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <title>AnirBan | Login</title>
+    <title>অনির্বাণ সমিতি | প্রবেশ</title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href={{ asset("assets/vendors/bootstrap/dist/css/bootstrap.min.css")}} rel="stylesheet" />
-    <link href={{ asset("assets/vendors/font-awesome/css/font-awesome.min.css")}} rel="stylesheet" />
-    <link href={{ asset("assets/vendors/themify-icons/css/themify-icons.css")}} rel="stylesheet" />
     <!-- THEME STYLES-->
     <link href={{ asset("assets/css/main.css")}} rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->

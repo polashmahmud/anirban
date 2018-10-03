@@ -27,21 +27,13 @@
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-money"></i>
                     <span class="nav-label">জমা</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
-                    <li>
-                        <a href="{{ route('collection.index') }}?type=lone">লোন কালেকশন</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('collection.index') }}?type=saving">সঞ্চয় কালেকশন</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('collection.index') }}?type=investment">ইনভেস্টমেন্ট কালেকশন</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('collection.index') }}?type=done">সকল সম্পূর্ণ একাউন্ট</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('collection.index') }}">সকল কালেকশন</a>
-                    </li>
+                    <li><a href="{{ route('collection.index') }}?type=lone">লোন কালেকশন</a></li>
+                    <li><a href="{{ route('collection.index') }}?type=saving">সঞ্চয় কালেকশন</a></li>
+                    <li><a href="{{ route('collection.index') }}?type=investment">ইনভেস্টমেন্ট কালেকশন</a></li>
+                    <li><a href="{{ route('collection.index') }}?type=done">সকল সম্পূর্ণ একাউন্ট</a></li>
+                    <li><a href="{{ route('collection.index') }}?branch=soriful">শরিফুল ব্রাঞ্চ</a></li>
+                    <li><a href="{{ route('collection.index') }}?branch=polash">পলাশ ব্রাঞ্চ</a></li>
+                    <li><a href="{{ route('collection.index') }}">সকল কালেকশন</a></li>
                 </ul>
             </li>
             <li>
