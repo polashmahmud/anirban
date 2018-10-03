@@ -13,5 +13,6 @@
     <!-- THEME STYLES-->
     @stack('header-script')
     <link href={{ asset("assets/css/main.min.css") }} rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Galada|Hind+Siliguri:400,700" rel="stylesheet">
     <!-- PAGE LEVEL STYLES-->
 </head>
